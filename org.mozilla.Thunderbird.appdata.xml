@@ -1,0 +1,103 @@
+<!-- https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html -->
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>org.mozilla.Thunderbird</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>Thunderbird</name>
+  <!-- From the GNOME Software utility -->
+  <summary>Email, RSS and newsgroup client with integrated spam filter</summary>
+  <description>
+    <!-- From the GNOME Software utility -->
+    <p>
+      Thunderbird is a full-featured email, RSS and newsgroup client that makes emailing safer, 
+      faster and easier than ever before. It supports different mail accounts (POP, IMAP, Gmail), 
+      has a simple mail account setup wizard, one-click address book, tabbed interface, an 
+      integrated learning spam filter, advanced search and indexing capabilities, and offers
+      easy organization of mails with tagging and virtual folders. It also features unrivaled 
+      extensibility.
+    </p>
+    <!-- From https://en.wikipedia.org/wiki/Mozilla_Thunderbird -->
+    <p>
+      Mozilla Thunderbird is a free and open-source cross-platform email, news, RSS, 
+      and chat client developed by the Mozilla Foundation.
+    </p>
+  </description>
+  <!-- https://specifications.freedesktop.org/menu-spec/latest/apa.html -->
+  <!-- https://specifications.freedesktop.org/menu-spec/latest/apas02.html -->
+  <categories>
+    <category>Calendar</category>
+    <category>Chat</category>
+    <category>Communication</category>
+    <category>ContactManagement</category>
+    <category>Email</category>
+    <category>Feed</category>
+    <category>InstantMessaging</category>
+    <category>IRCClient</category>
+    <category>News</category>
+    <category>Office</category>
+    <category>Productivity</category>
+  </categories>
+  <url type="homepage">https://www.thunderbird.net/</url>
+  <url type="bugtracker">https://bugzilla.mozilla.org/</url>
+  <url type="faq">https://support.mozilla.org/kb/thunderbird-faq</url>
+  <url type="help">https://support.mozilla.org/questions/thunderbird</url>
+  <url type="donation">https://donate.mozilla.org/thunderbird/</url>
+  <url type="translate">https://developer.mozilla.org/docs/Mozilla/Projects/Thunderbird/Thunderbird_Localization</url>
+  <launchable type="desktop-id">org.mozilla.Thunderbird.desktop</launchable>
+ 
+  <releases>
+    <release date="2018-08-06" version="60.0.0" urgency="medium" />
+    <release date="2018-07-10" version="52.9.1" urgency="critical" />
+    <release date="2018-05-18" version="52.8.0" urgency="critical" />
+    <release date="2018-03-23" version="52.7.0" urgency="medium" />
+    <release date="2018-01-25" version="52.6.0" urgency="medium" />
+    <release date="2017-12-22" version="52.5.2" urgency="critical" />
+    <release date="2017-11-23" version="52.5.0" urgency="medium" />
+    <release date="2017-10-06" version="52.4.0" urgency="medium" />
+  </releases>
+ 
+  <project_group>Mozilla</project_group>
+  <project_license>MPL-2.0</project_license>
+  <developer_name>Mozilla Foundation</developer_name>
+ 
+  <!--
+    From the official Thunderbird website
+    https://www.thunderbird.net/
+    https://www.thunderbird.net/features/
+    https://github.com/thundernest/thunderbird-website/
+    https://github.com/thundernest/thunderbird-website/tree/master/media/img/l10n/en-US/thunderbird/landing
+  --> 
+  <screenshots>
+    <screenshot type="default">https://raw.githubusercontent.com/hughsie/fedora-appstream/master/screenshots-extra/mozilla-thunderbird/a.png</screenshot>
+  </screenshots>
+ 
+  <update_contact>adrianlucrececeleste@airmail.cc</update_contact>
+ 
+  <suggests>
+    <id>org.libreoffice.LibreOffice</id>
+  </suggests>
+ 
+  <content_rating type="oars-1.0">
+    <content_attribute id="violence-cartoon">none</content_attribute>
+    <content_attribute id="violence-fantasy">none</content_attribute>
+    <content_attribute id="violence-realistic">none</content_attribute>
+    <content_attribute id="violence-bloodshed">none</content_attribute>
+    <content_attribute id="violence-sexual">none</content_attribute>
+    <content_attribute id="drugs-alcohol">none</content_attribute>
+    <content_attribute id="drugs-narcotics">none</content_attribute>
+    <content_attribute id="drugs-tobacco">none</content_attribute>
+    <content_attribute id="sex-nudity">none</content_attribute>
+    <content_attribute id="sex-themes">none</content_attribute>
+    <content_attribute id="language-profanity">none</content_attribute>
+    <content_attribute id="language-humor">none</content_attribute>
+    <content_attribute id="language-discrimination">none</content_attribute>
+    <content_attribute id="social-chat">intense</content_attribute>
+    <content_attribute id="social-info">intense</content_attribute>
+    <content_attribute id="social-audio">none</content_attribute>
+    <content_attribute id="social-location">none</content_attribute>
+    <content_attribute id="social-contacts">none</content_attribute>
+    <content_attribute id="money-purchasing">none</content_attribute>
+    <content_attribute id="money-gambling">none</content_attribute>
+  </content_rating>
+ 
+</component>

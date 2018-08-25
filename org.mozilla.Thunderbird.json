@@ -1,0 +1,112 @@
+{
+    "app-id": "org.mozilla.Thunderbird",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.28",
+    "sdk": "org.gnome.Sdk",
+    "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable"],
+    "command": "thunderbird",
+    "rename-icon": "thunderbird",
+    "finish-args": [
+        "--share=ipc", "--socket=x11",
+        "--device=dri",
+        "--share=network",
+        "--socket=pulseaudio",
+        "--filesystem=~/.cache/thunderbird:create", "--filesystem=~/.thunderbird:create",
+        "--filesystem=home:ro",
+        "--filesystem=xdg-download:rw",
+        "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        "--talk-name=org.a11y.*",
+        "--talk-name=org.freedesktop.Notifications"      
+    ],
+    "build-options" : {
+        "append-path": "/usr/lib/sdk/rust-stable/bin",
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "V": "1",
+            "CARGO_HOME": "/run/build/Thunderbird/cargo"
+        }
+    },
+    "cleanup": [
+        "/include",
+        "/lib/pkgconfig",
+        "/share/pkgconfig",
+        "/share/aclocal",
+        "/man",
+        "/share/man",
+        "*.la", "*.a"
+    ],
+    "modules": [
+        {
+            "name": "autoconf-2.13",
+            "cleanup": [ "*" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz",
+                    "sha256": "f0611136bee505811e9ca11ca7ac188ef5323a8e2ef19cffd3edb3cf08fd791e"
+                }
+            ],
+            "post-install": [
+	        "ln -s /app/bin/autoconf /app/bin/autoconf-2.13"
+            ]
+        },
+	{
+	    "name": "icu",
+        "cleanup": ["/bin/*", "/sbin/*"],
+	    "sources": [
+	       {
+		    "type": "archive",
+	            "url":"http://download.icu-project.org/files/icu4c/60.1/icu4c-60_1-src.tgz",
+	            "sha256":"f8f5a6c8fbf32c015a467972bdb1477dc5f5d5dfea908b6ed218715eeb5ee225"
+	       }
+	    ],
+	   "subdir": "source"
+	},
+        {
+            "name": "thunderbird",
+            "buildsystem": "simple",
+            "build-options":{
+                "cflags": "-fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2",
+                "cxxflags": "-fno-delete-null-pointer-checks -fno-lifetime-dse -fno-schedule-insns2",
+                "env":{
+                    "VERSION": "60.0",
+                    "TERM": "linux"
+                }
+            },
+            "build-commands": [
+                "./mach configure",
+                "./mach build -j $FLATPAK_BUILDER_N_JOBS",
+                "./mach buildsymbols",
+                "./mach install",
+                "for i in 16 22 24 32 48 64 128 256;do mkdir -p /app/share/icons/hicolor/${i}x${i}/apps;cp comm/mail/branding/thunderbird/default${i}.png /app/share/icons/hicolor/${i}x${i}/apps/thunderbird.png;done",
+                "mkdir -p /app/share/icons/hicolor/symbolic/apps",
+                "cp comm/mail/branding/thunderbird/TB-symbolic.svg /app/share/icons/hicolor/symbolic/apps/thunderbird-symbolic.svg",
+                "mkdir -p /app/share/applications",
+                "cp org.mozilla.Thunderbird.desktop /app/share/applications",
+		"mkdir -p /app/share/appdata",
+		"cp org.mozilla.Thunderbird.appdata.xml /app/share/appdata"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "mozconfig"
+                },
+                {
+                    "type": "file",
+                    "path": "org.mozilla.Thunderbird.desktop"
+                },
+		{
+			"type": "file",
+			"path": "org.mozilla.Thunderbird.appdata.xml"
+		},
+                {
+                    "type": "archive",
+                    "url": "https://ftp.mozilla.org/pub/thunderbird/releases/60.0/source/thunderbird-60.0.source.tar.xz",
+                    "sha256": "bd7da88dcc03c448a4e975b5a1d3e9bf466ec9151b1059392bcdb50955a22056"
+                }
+            ]
+        }
+    ]
+}
